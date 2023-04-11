@@ -10,9 +10,9 @@ on:
 name: Release
 
 env:
-  # SCHEDULED_BUILD_VERSION_PREFIX: v0.2.0
+  SCHEDULED_BUILD_VERSION_PREFIX: v0.2.0
 
-  # SCHEDULED_PERIOD: nightly
+  SCHEDULED_PERIOD: nightly
 
 jobs:
   build:
