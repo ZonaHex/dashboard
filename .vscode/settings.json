@@ -5,6 +5,7 @@
     "axios",
     "echarts",
     "Greptime",
+    "greptimeteam",
     "hoverable",
     "pinia",
     "promql",
