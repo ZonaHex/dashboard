@@ -22,6 +22,10 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v3
 
+      - name: Clean up
+        shell: bash
+        run: rm -rf release && mkdir -p release
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -37,20 +41,21 @@ jobs:
         shell: bash
         run: |
           cd dist
-          tar -czvf build.tar.gz *
-          echo $(shasum -a 256 build.tar.gz) > sha256.txt
+          tar -czvf release/build.tar.gz *
+          cd ../
+          cd release && shasum -a 256 build.tar.gz > sha256.txt && cd ../
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build.tar.gz
-          path: build.tar.gz
+          path: release/build.tar.gz
 
       - name: Upload checksum of artifacts
         uses: actions/upload-artifact@v3
         with:
           name: sha256.txt
-          path: sha256.txt
+          path: release/sha256.txt
 
   # docker:
   #   name: Build docker image
