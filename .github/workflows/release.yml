@@ -40,9 +40,7 @@ jobs:
       - name: Calculate checksum and rename binary
         shell: bash
         run: |
-          cd dist
-          tar -czvf release/build.tar.gz *
-          cd ../
+          tar -czvf release/build.tar.gz ./dist
           cd release && shasum -a 256 build.tar.gz > sha256.txt && cd ../
 
       - name: Upload artifacts
