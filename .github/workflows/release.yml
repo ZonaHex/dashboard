@@ -157,4 +157,5 @@ jobs:
         with:
           name: 'Release ${{ github.ref_name }}'
           files: |
-            **/dashboard-*
+            **/build.tar.gz
+            **/sha256.txt
