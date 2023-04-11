@@ -156,6 +156,3 @@ jobs:
         if: github.event_name != 'schedule'
         with:
           name: 'Release ${{ github.ref_name }}'
-          files: |
-            build.tar.gz
-            sha256.txt
