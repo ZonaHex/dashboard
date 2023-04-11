@@ -1,0 +1,16 @@
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+name: Test replace
+
+jobs:
+  replace:
+    name: Replace
+    runs-on: ubuntu-latest
+    steps:
+      - id: update-tag
+        run: |
+          tag=123 ./update.sh
