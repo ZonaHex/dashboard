@@ -13,5 +13,6 @@ jobs:
     steps:
       - id: update-tag
         run: |
-          cd ../
+          ls
+          cd .github
           tag=123 sed -i -r s/.*/$tag/ TAG
