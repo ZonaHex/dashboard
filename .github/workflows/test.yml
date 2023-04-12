@@ -18,7 +18,6 @@ jobs:
         run: date +%s > report.txt
         # run: cd src/servers/dashboard/version
       - uses: peter-evans/create-pull-request@v4
-        if: ${{ steps.update-tag.outputs.dirty }}
         with:
           token: ${{ github.token }}
           commit-message: 'Update dashboard tag to v123'
