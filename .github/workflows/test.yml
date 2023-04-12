@@ -15,17 +15,17 @@ jobs:
         with:
           repository: 'ZonaHex/greptimedb'
       - id: update-tag
-        run: date +%s > report.txt
-        # run: cd src/servers/dashboard/version
+        # run: date +%s > report.txt
+        run: sed -i -r s/.*/v0.0.0/ src/servers/dashboard/version
       - uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.ZONA }}
-          commit-message: 'Update dashboard tag to v123'
+          commit-message: 'Update dashboard tag to v0.0.0'
           committer: GitHub Action <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          branch: v123
+          branch: v0.0.0
           delete-branch: true
-          title: 'Update dashboard tag to v123'
+          title: 'Update dashboard tag to v0.0.0'
           body: |
-            Update dashboard tag to: v123
+            Update dashboard tag to: v0.0.0
