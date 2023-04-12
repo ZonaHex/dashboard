@@ -14,8 +14,9 @@ jobs:
       - uses: actions/checkout@v3.1.0
         with:
           repository: 'ZonaHex/greptimedb'
-        # run: date +%s > report.txt
-        run: sed -i -r s/.*/v123/ src/servers/dashboard/version
+      - id: update-tag
+        run: date +%s > report.txt
+        # run: cd src/servers/dashboard/version
       - uses: peter-evans/create-pull-request@v4
         if: ${{ steps.update-tag.outputs.dirty }}
         with:
