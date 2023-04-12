@@ -11,6 +11,22 @@ jobs:
     name: Replace
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3.1.0
+        with:
+          repository: 'ZonaHex/greptimedb'
       - id: update-tag
         run: |
-          tag=123 sed -i -r s/.*/$tag/ TAG
+          tag=v123 ./update.sh
+      - uses: peter-evans/create-pull-request@v4
+        if: ${{ steps.update-tag.outputs.dirty }}
+        with:
+          token: ${{ github.token }}
+          commit-message: 'Update dashboard tag to v123'
+          committer: GitHub Action <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: v123
+          delete-branch: true
+          title: 'Update dashboard tag to v123'
+          body: |
+            Update dashboard tag to: v123
