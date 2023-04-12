@@ -16,7 +16,7 @@ jobs:
           repository: 'ZonaHex/greptimedb'
       - id: update-tag
         run: |
-          tag=v123 ./update.sh
+          sed -i -r s/.*/v123/ src/servers/dashboard/version
       - uses: peter-evans/create-pull-request@v4
         if: ${{ steps.update-tag.outputs.dirty }}
         with:
