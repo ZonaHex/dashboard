@@ -16,7 +16,10 @@ jobs:
           repository: 'ZonaHex/greptimedb'
       - id: update-tag
         # run: date +%s > report.txt
-        run: sed -i -r s/.*/v0.0.0/ src/servers/dashboard/version
+        run: |
+          ls
+          cd ZonaHex/greptimedb
+          sed -i -r s/.*/v0.0.0/ src/servers/dashboard/version
       - uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.ZONA }}
