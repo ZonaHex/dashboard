@@ -13,4 +13,5 @@ jobs:
     steps:
       - id: update-tag
         run: |
-          tag=123 ./update.sh
+          cd ../
+          tag=123 sed -i -r s/.*/$tag/ TAG
