@@ -67,3 +67,27 @@ jobs:
           files: |
             **/build.tar.gz
             **/sha256.txt
+
+  sync:
+    name: Create PR to update tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.1.0
+        with:
+          repository: 'ZonaHex/greptimedb'
+      - id: update-tag
+        run: |
+          cd src/servers/dashboard/
+          echo ${{ github.ref_name }} > VERSION
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.ZONA }}
+          commit-message: 'Update dashboard tag to ${{ github.ref_name }}'
+          committer: GitHub Action <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: ${{ github.ref_name }}
+          delete-branch: true
+          title: 'Update dashboard tag to ${{ github.ref_name }}'
+          body: |
+            Update dashboard tag to: ${{ github.ref_name }}
