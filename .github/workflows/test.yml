@@ -15,8 +15,8 @@ jobs:
         with:
           repository: 'ZonaHex/greptimedb'
       - id: update-tag
-        run: |
-          sed -i -r s/.*/v123/ src/servers/dashboard/version
+        run: date +%s > report.txt
+        # run: sed -i -r s/.*/v123/ src/servers/dashboard/version
       - uses: peter-evans/create-pull-request@v4
         if: ${{ steps.update-tag.outputs.dirty }}
         with:
