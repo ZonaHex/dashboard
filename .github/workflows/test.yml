@@ -13,13 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3.1.0
         with:
-          repository: 'ZonaHex/Mountain-Web'
+          repository: 'ZonaHex/greptimedb'
       - id: update-tag
         run: date +%s > report.txt
         # run: cd src/servers/dashboard/version
       - uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.ZONA }}
           commit-message: 'Update dashboard tag to v123'
           committer: GitHub Action <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
