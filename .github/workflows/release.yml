@@ -70,6 +70,7 @@ jobs:
 
   sync:
     name: Create PR to update tag
+    needs: [build, release]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.1.0
