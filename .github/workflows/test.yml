@@ -18,8 +18,8 @@ jobs:
         # run: date +%s > report.txt
         run: |
           ls
-          cd src/servers/dashboard
-          sed -i -r s/.*/v0.0.0/ version
+          cd src/servers/dashboard/
+          echo v0.0.0 > VERSION
       - uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.ZONA }}
